@@ -44,6 +44,10 @@ class TranslationController extends Controller
         return response()->json(['download_url' => $downloadUrl]);
     }
 
+    /**
+     * Recursively processes and translates all string values within the JSON structure.
+     * Supports nested objects and arrays, handling complex JSON effectively.
+     */
     private function translateRecursive($data, $targetLanguage)
     {
         if (is_string($data)) {
@@ -87,3 +91,4 @@ class TranslationController extends Controller
         }
     }
 }
+

@@ -1,0 +1,121 @@
+{
+  "swagger": "2.0",
+  "paths": {
+    "/register": {
+      "post": {
+        "summary": "register",
+        "description": "",
+        "operationId": "d0417c45-346e-4e7f-9702-166dd99e496b",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "default": "",
+            "name": "Cookie",
+            "required": false,
+            "in": "header"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "{\n    \"name\": \"se User\",\n    \"email\": \"se@example.com\",\n    \"password\": \"password123\"\n}"
+            },
+            "in": "body",
+            "name": "body"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "no response description was provided for this operation"
+          }
+        }
+      }
+    },
+    "/login": {
+      "post": {
+        "summary": "login",
+        "description": "",
+        "operationId": "c05f125b-ac52-42e5-88af-1315afadef6e",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "default": "",
+            "name": "Cookie",
+            "required": false,
+            "in": "header"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "{\n    \"email\": \"test@example.com\",\n    \"password\": \"password123\"\n}"
+            },
+            "in": "body",
+            "name": "body"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "no response description was provided for this operation"
+          }
+        }
+      }
+    },
+    "/translate": {
+      "post": {
+        "summary": "translate",
+        "description": "",
+        "operationId": "c4248bd4-d812-41b7-81a5-6d2b61f560d3",
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "default": "",
+            "name": "Cookie",
+            "required": false,
+            "in": "header"
+          },
+          {
+            "type": "string",
+            "default": "Hier komt de data van de json_file",
+            "name": "json_file",
+            "required": false,
+            "in": "formData"
+          },
+          {
+            "type": "string",
+            "default": "english",
+            "name": "target_language",
+            "required": false,
+            "in": "formData"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "no response description was provided for this operation"
+          }
+        },
+        "security": [
+          {
+            "oauth_2_auth": []
+          }
+        ]
+      }
+    }
+  },
+  "securityDefinitions": {
+    "oauth_2_auth": {
+      "type": "oauth2",
+      "scopes": {}
+    }
+  },
+  "tags": []
+}

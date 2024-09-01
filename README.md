@@ -9,8 +9,9 @@ Dit project biedt een API die JSON-bestanden vertaalt naar een opgegeven doeltaa
 2. [Configuratie](#configuratie)
 3. [Gebruik](#gebruik)
 4. [API Endpoints](#api-endpoints)
-5. [Tests](#tests)
-6. [Bijdragen](#bijdragen)
+5. [Swagger json](#swagger-json)
+6. [Conclusie](#conclusie)
+
 
 ## Installatie
 
@@ -86,6 +87,10 @@ Navigeer naar `/translate` om een JSON-bestand te uploaden, een doeltaal te sele
 ## API Endpoints
 
 De details van de API endpoints zijn beschikbaar in JSON formaat. Raadpleeg het Swagger-bestand (`swagger.json`) voor de volledige documentatie en voorbeeldverzoeken.
+
+## Swagger json
+
+Je kan de swagger info in een json format vinden in de root map onder het swagger mapje.
 
 # Conclusie
 Dit project biedt een flexibele oplossing voor het vertalen van JSON-bestanden naar een opgegeven doeltaal. Je kunt het project op twee manieren gebruiken:

@@ -7,7 +7,6 @@ use App\Models\User;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Support\Facades\Log;
 
 class TranslationControllerTest extends TestCase
 {
@@ -16,7 +15,6 @@ class TranslationControllerTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        Storage::fake('public');
     }
 
     public function test_json_validation()
@@ -40,8 +38,6 @@ class TranslationControllerTest extends TestCase
         $user = User::factory()->create();
         $this->actingAs($user);
 
-        Storage::fake('public'); 
-
         $validJson = json_encode(['test' => 'Hello World']);
         $jsonFile = UploadedFile::fake()->createWithContent('valid.json', $validJson);
 
@@ -51,14 +47,24 @@ class TranslationControllerTest extends TestCase
         ]);
 
         $response->assertStatus(200)
-                ->assertJsonStructure(['download_url']);
+                 ->assertJsonStructure(['download_url']);
 
         $files = Storage::disk('public')->files();
 
-        $this->assertNotEmpty($files, 'No files found in storage after translation');
+        $filenamePattern = '/^translated_\d+\.json$/';
+        $matchingFile = null;
 
-        if (!empty($files)) {
-            $content = Storage::disk('public')->get($files[0]);
+        foreach ($files as $file) {
+            if (preg_match($filenamePattern, basename($file))) {
+                $matchingFile = $file;
+                break;
+            }
+        }
+
+        $this->assertNotNull($matchingFile, 'Translated JSON file not found in storage');
+
+        if ($matchingFile) {
+            $content = Storage::disk('public')->get($matchingFile);
             $decodedContent = json_decode($content, true);
 
             $this->assertIsArray($decodedContent, 'File content is not a valid JSON');

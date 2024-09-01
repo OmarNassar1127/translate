@@ -36,11 +36,9 @@ class TranslationController extends Controller
 
         $translatedData = $this->translateRecursive($jsonData, $targetLanguage);
 
-        // Sla het vertaalde JSON-bestand op
         $fileName = 'translated_' . time() . '.json';
         Storage::put('public/' . $fileName, json_encode($translatedData, JSON_PRETTY_PRINT));
 
-        // Retourneer de URL naar het bestand
         $downloadUrl = Storage::url($fileName);
 
         return response()->json(['download_url' => $downloadUrl]);
